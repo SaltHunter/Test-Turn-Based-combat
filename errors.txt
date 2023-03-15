@@ -2,17 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 43: menu statement expects a non-empty block.
-    menu:
-        ^
-
-File "game/script.rpy", line 44: expected statement.
+File "game/script.rpy", line 52: choice menuitem expects a non-empty block.
     "Attack":
-            ^
-
-File "game/script.rpy", line 50: expected statement.
-    "Don't Attack":
-                  ^
+             ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Wed Mar 15 15:30:27 2023
+Wed Mar 15 16:31:35 2023

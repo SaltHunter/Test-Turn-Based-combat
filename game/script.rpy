@@ -13,7 +13,7 @@ label dice_roll:
     $ d10 = renpy.random.randint(1, 10)
     $ d20 = renpy.random.randint(1, 20)
     return # This defines the range in which damage is being dealt
-
+#Test
 # The game starts here.
 
 label start:
@@ -46,20 +46,44 @@ label start:
 
     label simple_battle:
         while player_hp > 0:
+            call dice_roll
             # Player's Turn
             menu:
                 "Attack":
-                    $ enemy_hp -= 2
-                    "That's a strong hit!  Enemy has [enemy_hp] hp!"
-                    if enemy_hp <= 0:
-                        "You win the combat encounter!"
-                        jump simple_end
+                    if d10 >= 9:                                                # 20% crit
+                        $ player_attack_value = d6 + d4
+                        $ enemy_hp -= player_attack_value
+                        "That ought'a leave a mark, Critical Hit!  You hit for [player_attack_value] damage!"
+                    elif d10 >= 5:                                              # 40%  hit
+                        $ player_attack_value =  d4                                        
+                        $ enemy_hp -= player_attack_value
+                        "That's a strong hit!  Enemy takes [player_attack_value] hp!"
+                    else:                                                       # 40%  miss
+                        "You miss!"  
+
                 "Don't Attack":
-                    "You Don't Attack"        
+                    "You Don't Attack"
+
+            if enemy_hp <= 0:
+                    "You win the combat encounter!"
+                    jump simple_end    
 
         # Enemy Turn
-            $ player_hp -= 2
-            "The Enemy makes an attack, reducing you to [player_hp] hp!"
+            call dice_roll
+
+            if d20 >= 19:                                            # 20% Crit                                                                                     
+                $ player_hp -= d10
+                "The Enemy makes a wild attack for [d10] damage!"
+            elif d20 <=2:                                            # 20% Heal for 4
+                $ enemy_hp += d4
+                if enemy_hp < enemy_max_hp:
+                    "The Enemy heals itself, raising [d4] hp!"
+                else: # Full heal
+                    $ enemy_hp = enemy_max_hp
+                    "The Enemy fully heals itself back to full hp!"
+            else:                                                    # 60% Standard Attack                                                                           
+                $ player_hp -= d4
+                "The Enemy attacks for [d4] damage!"
 
         "You Died!"    
 
