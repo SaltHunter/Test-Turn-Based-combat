@@ -1,0 +1,22 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/script.rpy", line 56, in script
+    jump simple_battle
+ScriptError: could not find label 'simple_battle'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 56, in script
+    jump simple_battle
+  File "C:\Renpy\renpy-7.3.5-sdk\renpy\ast.py", line 1974, in execute
+    rv = renpy.game.script.lookup(target)
+  File "C:\Renpy\renpy-7.3.5-sdk\renpy\script.py", line 927, in lookup
+    raise ScriptError("could not find label '%s'." % str(original))
+ScriptError: could not find label 'simple_battle'.
+
+Windows-10-10.0.19044 AMD64
+Ren'Py 8.0.3.22090809
+Test Turn Based combat 1.0
+Wed Mar 15 15:24:09 2023
