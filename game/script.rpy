@@ -18,7 +18,7 @@ label dice_roll:
 
 label start:
     # Player Stats
-    $ player_max_hp = 10
+    $ player_max_hp = 1000
     $ player_hp = player_max_hp
 
     # Enemy Stats
@@ -64,10 +64,12 @@ label start:
                 "Don't Attack":
                     "You Don't Attack"
 
-            if enemy_hp <= 0:
-                    "You win the combat encounter!"
+            if enemy_hp <= 0 and player_hp > 5:
+                    "You destroyed the enemy!"
                     jump simple_end    
-
+            elif enemy_hp <=0 and player_hp <= 5:
+                    "You barely made it out alive"
+                    jump simple_end
         # Enemy Turn
             call dice_roll
 
